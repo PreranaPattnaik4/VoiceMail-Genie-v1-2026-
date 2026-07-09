@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { initializeApp } from 'firebase/app';
 import { 
   getAuth, 
@@ -14,7 +15,32 @@ import {
   browserSessionPersistence
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
-import firebaseConfig from '../firebase-applet-config.json';
+
+declare global {
+  const __FIREBASE_CONFIG__: any;
+}
+
+const defaultFirebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || ""
+};
+
+const firebaseConfig = typeof __FIREBASE_CONFIG__ !== 'undefined' && __FIREBASE_CONFIG__ && Object.keys(__FIREBASE_CONFIG__).length > 0
+  ? {
+      apiKey: import.meta.env.VITE_FIREBASE_API_KEY || __FIREBASE_CONFIG__.apiKey || "",
+      authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || __FIREBASE_CONFIG__.authDomain || "",
+      projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || __FIREBASE_CONFIG__.projectId || "",
+      storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || __FIREBASE_CONFIG__.storageBucket || "",
+      messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || __FIREBASE_CONFIG__.messagingSenderId || "",
+      appId: import.meta.env.VITE_FIREBASE_APP_ID || __FIREBASE_CONFIG__.appId || "",
+      measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || __FIREBASE_CONFIG__.measurementId || ""
+    }
+  : defaultFirebaseConfig;
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
