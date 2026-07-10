@@ -1362,7 +1362,7 @@ export default function App() {
             <div className="relative z-10 flex-grow flex flex-col items-center justify-center py-8">
               <div className="w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/50 p-2 shadow-2xl hover:border-indigo-500/30 transition-all duration-300">
                 <img 
-                  src="https://www.dropbox.com/scl/fi/2fsft5h3y1cxzc8le26g2/8a14f560-f721-49e8-9514-152accab51c2.png?rlkey=ibt6bqqk18d8od97xrqulbpxa&st=832pno3k&raw=1" 
+                  src="https://www.dropbox.com/scl/fi/f71a1lgw3ia5paty4js1b/a9e2a39a-36c4-491b-bf98-dbe7005d8f26.png?rlkey=52mqbn97j7c6ujvj0y2cow6xd&st=d5fwqzt7&raw=1" 
                   alt="VoiceMail-Genie Interface Preview" 
                   className="w-full h-auto rounded-xl object-cover shadow-inner"
                   referrerPolicy="no-referrer"
@@ -1401,7 +1401,7 @@ export default function App() {
               <div className="block lg:hidden mb-6">
                 <div className="w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 p-1.5 shadow-sm">
                   <img 
-                    src="https://www.dropbox.com/scl/fi/2fsft5h3y1cxzc8le26g2/8a14f560-f721-49e8-9514-152accab51c2.png?rlkey=ibt6bqqk18d8od97xrqulbpxa&st=832pno3k&raw=1" 
+                    src="https://www.dropbox.com/scl/fi/f71a1lgw3ia5paty4js1b/a9e2a39a-36c4-491b-bf98-dbe7005d8f26.png?rlkey=52mqbn97j7c6ujvj0y2cow6xd&st=d5fwqzt7&raw=1" 
                     alt="VoiceMail-Genie Interface Preview" 
                     className="w-full h-auto rounded-xl object-cover"
                     referrerPolicy="no-referrer"

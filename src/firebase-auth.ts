@@ -42,9 +42,44 @@ const firebaseConfig = typeof __FIREBASE_CONFIG__ !== 'undefined' && __FIREBASE_
     }
   : defaultFirebaseConfig;
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+let app: any = null;
+let auth: any = null;
+let db: any = null;
+
+try {
+  if (!firebaseConfig.apiKey || firebaseConfig.apiKey.trim() === "") {
+    throw new Error("No API key provided. Firebase must be set up or configured in .env.");
+  }
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+} catch (error) {
+  console.warn("Firebase failed to initialize gracefully. Falling back to mock references for Sandbox Mode support.", error);
+  app = null;
+  auth = new Proxy({}, {
+    get(target, prop) {
+      if (prop === 'currentUser') {
+        return null;
+      }
+      if (prop === 'signOut') {
+        return () => Promise.resolve();
+      }
+      return (...args: any[]) => {
+        console.warn(`Firebase Auth operation '${String(prop)}' called but Firebase is not initialized.`);
+        throw new Error("Firebase Authentication is not initialized. Please connect Firebase or use Sandbox Mode.");
+      };
+    }
+  }) as any;
+  db = new Proxy({}, {
+    get(target, prop) {
+      return (...args: any[]) => {
+        throw new Error("Firestore is not initialized. Please connect Firebase or use Sandbox Mode.");
+      };
+    }
+  }) as any;
+}
+
+export { app, auth, db };
 
 const provider = new GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/gmail.compose');
@@ -106,6 +141,15 @@ export const initAuth = (
     }, 50);
   }
 
+  if (!app) {
+    if (typeof window !== 'undefined' && localStorage.getItem('is_sandbox_mode') !== 'true') {
+      setTimeout(() => {
+        if (onAuthFailure) onAuthFailure('disconnected');
+      }, 50);
+    }
+    return () => {};
+  }
+
   return onAuthStateChanged(auth, async (user: User | null) => {
     if (typeof window !== 'undefined' && localStorage.getItem('is_sandbox_mode') === 'true') {
       return; // Handled by sandbox bypass
@@ -134,6 +178,9 @@ export const initAuth = (
 };
 
 export const googleSignIn = async (): Promise<{ user: User; accessToken: string } | null> => {
+  if (!app) {
+    throw new Error("Firebase is not initialized. Please connect your Firebase project or use 'Instant Sandbox Bypass'.");
+  }
   try {
     isSigningIn = true;
     const result = await signInWithPopup(auth, provider);
@@ -182,7 +229,9 @@ export const enterSandboxMode = (): { user: User; accessToken: string } => {
 };
 
 export const logout = async () => {
-  await auth.signOut().catch(() => {});
+  if (app) {
+    await auth.signOut().catch(() => {});
+  }
   cachedAccessToken = null;
   if (typeof window !== 'undefined') {
     localStorage.removeItem('gmail_access_token');
@@ -197,6 +246,9 @@ export const logout = async () => {
  * Register a user with Email/Password, sets their display name, and stores user details in Firestore.
  */
 export const signUpWithEmailPassword = async (name: string, email: string, password: string): Promise<User> => {
+  if (!app) {
+    throw new Error("Firebase is not initialized. Please connect your Firebase project or use 'Instant Sandbox Bypass'.");
+  }
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
   const user = userCredential.user;
 
@@ -224,6 +276,9 @@ export const signUpWithEmailPassword = async (name: string, email: string, passw
  * Log in a user with Email/Password and apply desired session persistence.
  */
 export const loginWithEmailPassword = async (email: string, password: string, rememberMe: boolean = true): Promise<User> => {
+  if (!app) {
+    throw new Error("Firebase is not initialized. Please connect your Firebase project or use 'Instant Sandbox Bypass'.");
+  }
   const persistence = rememberMe ? browserLocalPersistence : browserSessionPersistence;
   await setPersistence(auth, persistence);
   const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -234,6 +289,9 @@ export const loginWithEmailPassword = async (email: string, password: string, re
  * Send a password reset email via Firebase.
  */
 export const sendPasswordReset = async (email: string): Promise<void> => {
+  if (!app) {
+    throw new Error("Firebase is not initialized. Please connect your Firebase project or use 'Instant Sandbox Bypass'.");
+  }
   await sendPasswordResetEmail(auth, email);
 };
 
