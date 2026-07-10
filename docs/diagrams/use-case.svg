@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" style="background-color: #0b0f19; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <text x="30" y="45" fill="#f8fafc" font-size="20" font-weight="bold" letter-spacing="1">SYSTEM USE CASES</text>
+  <text x="30" y="65" fill="#64748b" font-size="12">Boundary Actor Associations and Functional Operations</text>
+
+  <!-- Actors -->
+  <!-- Actor 1: Registered User -->
+  <g transform="translate(100, 150)">
+    <circle cx="0" cy="0" r="16" fill="#3b82f6" />
+    <line x1="0" y1="16" x2="0" y2="50" stroke="#3b82f6" stroke-width="3" />
+    <line x1="-20" y1="28" x2="20" y2="28" stroke="#3b82f6" stroke-width="2.5" />
+    <line x1="0" y1="50" x2="-14" y2="80" stroke="#3b82f6" stroke-width="2.5" />
+    <line x1="0" y1="50" x2="14" y2="80" stroke="#3b82f6" stroke-width="2.5" />
+    <text x="0" y="100" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">Registered User</text>
+  </g>
+
+  <!-- Actor 2: Sandbox Demo Actor -->
+  <g transform="translate(100, 300)">
+    <circle cx="0" cy="0" r="16" fill="#10b981" />
+    <line x1="0" y1="16" x2="0" y2="50" stroke="#10b981" stroke-width="3" />
+    <line x1="-20" y1="28" x2="20" y2="28" stroke="#10b981" stroke-width="2.5" />
+    <line x1="0" y1="50" x2="-14" y2="80" stroke="#10b981" stroke-width="2.5" />
+    <line x1="0" y1="50" x2="14" y2="80" stroke="#10b981" stroke-width="2.5" />
+    <text x="0" y="100" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">Sandbox Demo</text>
+  </g>
+
+  <!-- System Boundary -->
+  <rect x="250" y="100" width="480" height="310" rx="16" fill="#1e293b" stroke="#334155" stroke-width="2" />
+  <text x="490" y="125" fill="#94a3b8" font-size="11" font-weight="extrabold" text-anchor="middle">SYSTEM BOUNDARY (VOICEMAIL-GENIE)</text>
+
+  <!-- Use Case 1: Capture Voice -->
+  <rect x="300" y="150" width="160" height="40" rx="20" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
+  <text x="380" y="174" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Capture Voice Memo</text>
+
+  <!-- Use Case 2: Apply Tone & Scenario -->
+  <rect x="300" y="215" width="160" height="40" rx="20" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
+  <text x="380" y="239" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Apply Tones &amp; Scenarios</text>
+
+  <!-- Use Case 3: Sync to Gmail Drafts -->
+  <rect x="300" y="280" width="160" height="40" rx="20" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
+  <text x="380" y="304" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Sync Gmail Draft</text>
+
+  <!-- Use Case 4: Simulate Sandbox -->
+  <rect x="300" y="345" width="160" height="40" rx="20" fill="#0f172a" stroke="#475569" stroke-width="1.5" />
+  <text x="380" y="369" fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">Simulate Operations</text>
+
+  <!-- Use Case 5: AI Translation -->
+  <rect x="540" y="247" width="160" height="40" rx="20" fill="#0f172a" stroke="#818cf8" stroke-width="1.5" />
+  <text x="620" y="271" fill="#c7d2fe" font-size="11" font-weight="600" text-anchor="middle">Dynamic Translation</text>
+
+  <!-- Association Lines -->
+  <!-- User connections -->
+  <line x1="150" y1="180" x2="300" y2="170" stroke="#3b82f6" stroke-width="1.5" />
+  <line x1="150" y1="180" x2="300" y2="235" stroke="#3b82f6" stroke-width="1.5" />
+  <line x1="150" y1="180" x2="300" y2="300" stroke="#3b82f6" stroke-width="1.5" />
+
+  <!-- Sandbox connections -->
+  <line x1="150" y1="330" x2="300" y2="235" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3" />
+  <line x1="150" y1="330" x2="300" y2="365" stroke="#10b981" stroke-width="1.5" />
+
+  <!-- Extend/Include relations inside system -->
+  <path d="M 460,235 L 535,260" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+  <polygon points="530,255 535,260 528,265" fill="#818cf8" />
+  <text x="500" y="243" fill="#818cf8" font-size="9" text-anchor="middle" transform="rotate(18, 500, 243)">&lt;&lt;extend&gt;&gt;</text>
+</svg>

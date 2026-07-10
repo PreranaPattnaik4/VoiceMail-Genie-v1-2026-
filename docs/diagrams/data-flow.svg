@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" style="background-color: #0b0f19; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <text x="30" y="45" fill="#f8fafc" font-size="20" font-weight="bold" letter-spacing="1">DATA TRANSFORMATION PIPELINE</text>
+  <text x="30" y="65" fill="#64748b" font-size="12">State Transformations from Raw Voice Mic Captures to Encoded RFC 822 Email streams</text>
+
+  <!-- Node 1: Raw Voice -->
+  <rect x="50" y="195" width="120" height="60" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <text x="110" y="225" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">1. RAW VOICE MEMO</text>
+  <text x="110" y="242" fill="#94a3b8" font-size="10" text-anchor="middle">WebM Mic Capture</text>
+
+  <!-- Arrow 1 -->
+  <path d="M 170,225 L 205,225" stroke="#475569" stroke-width="2" fill="none" />
+  <polygon points="200,221 205,225 200,229" fill="#475569" />
+
+  <!-- Node 2: Base64 Stream -->
+  <rect x="210" y="195" width="120" height="60" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <text x="270" y="225" fill="#818cf8" font-size="11" font-weight="bold" text-anchor="middle">2. BASE64 BINARY</text>
+  <text x="270" y="242" fill="#94a3b8" font-size="10" text-anchor="middle">Payload Transfer</text>
+
+  <!-- Arrow 2 -->
+  <path d="M 330,225 L 365,225" stroke="#475569" stroke-width="2" fill="none" />
+  <polygon points="360,221 365,225 360,229" fill="#475569" />
+
+  <!-- Node 3: Transcribed JSON -->
+  <rect x="370" y="195" width="120" height="60" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <text x="430" y="225" fill="#ec4899" font-size="11" font-weight="bold" text-anchor="middle">3. TEXT TRANSCRIBED</text>
+  <text x="430" y="242" fill="#94a3b8" font-size="10" text-anchor="middle">JSON String Nodes</text>
+
+  <!-- Arrow 3 -->
+  <path d="M 490,225 L 525,225" stroke="#475569" stroke-width="2" fill="none" />
+  <polygon points="520,221 525,225 520,229" fill="#475569" />
+
+  <!-- Node 4: Formatted HTML Draft -->
+  <rect x="530" y="195" width="120" height="60" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <text x="590" y="225" fill="#fb923c" font-size="11" font-weight="bold" text-anchor="middle">4. HTML COMPILED</text>
+  <text x="590" y="242" fill="#94a3b8" font-size="10" text-anchor="middle">Rich Subject &amp; Body</text>
+
+  <!-- Arrow 4 -->
+  <path d="M 650,225 L 685,225" stroke="#475569" stroke-width="2" fill="none" />
+  <polygon points="680,221 685,225 680,229" fill="#475569" />
+
+  <!-- Node 5: RFC 822 Gmail Stream -->
+  <rect x="690" y="195" width="100" height="60" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="1.5" />
+  <text x="740" y="225" fill="#34d399" font-size="11" font-weight="bold" text-anchor="middle">5. RFC 822</text>
+  <text x="740" y="242" fill="#94a3b8" font-size="10" text-anchor="middle">Gmail Draft API</text>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" style="background-color: #0b0f19; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#a78bfa" />
+    </linearGradient>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#f472b6" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#fb923c" />
+    </linearGradient>
+  </defs>
+
+  <text x="30" y="45" fill="#f8fafc" font-size="20" font-weight="bold" letter-spacing="1">DRAFT COMPILER WORKFLOW</text>
+  <text x="30" y="65" fill="#64748b" font-size="12">Iterative Voice Dictation and Post-Processing Stages</text>
+
+  <!-- Step 1 Card -->
+  <rect x="50" y="150" width="130" height="150" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <circle cx="115" cy="190" r="22" fill="url(#blueGrad)" />
+  <text x="115" y="195" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">1</text>
+  <text x="115" y="240" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">Record Voice</text>
+  <text x="115" y="260" fill="#94a3b8" font-size="10" text-anchor="middle">or Upload File</text>
+
+  <!-- Arrow 1 -->
+  <path d="M 190,225 L 220,225" stroke="#475569" stroke-width="3" fill="none" />
+  <polygon points="220,220 228,225 220,230" fill="#475569" />
+
+  <!-- Step 2 Card -->
+  <rect x="230" y="150" width="130" height="150" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <circle cx="295" cy="190" r="22" fill="url(#purpleGrad)" />
+  <text x="295" y="195" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">2</text>
+  <text x="295" y="240" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">Transcription</text>
+  <text x="295" y="260" fill="#94a3b8" font-size="10" text-anchor="middle">Gemini Speech API</text>
+
+  <!-- Arrow 2 -->
+  <path d="M 370,225 L 400,225" stroke="#475569" stroke-width="3" fill="none" />
+  <polygon points="400,220 408,225 400,230" fill="#475569" />
+
+  <!-- Step 3 Card -->
+  <rect x="410" y="150" width="130" height="150" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <circle cx="475" cy="190" r="22" fill="url(#pinkGrad)" />
+  <text x="475" y="195" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">3</text>
+  <text x="475" y="240" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">AI Composer</text>
+  <text x="475" y="260" fill="#94a3b8" font-size="10" text-anchor="middle">Intent &amp; Tone tuning</text>
+
+  <!-- Arrow 3 -->
+  <path d="M 550,225 L 580,225" stroke="#475569" stroke-width="3" fill="none" />
+  <polygon points="580,220 588,225 580,230" fill="#475569" />
+
+  <!-- Step 4 Card -->
+  <rect x="590" y="150" width="130" height="150" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+  <circle cx="655" cy="190" r="22" fill="url(#orangeGrad)" />
+  <text x="655" y="195" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">4</text>
+  <text x="655" y="240" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle">Gmail Sync</text>
+  <text x="655" y="260" fill="#94a3b8" font-size="10" text-anchor="middle">Registered Draft</text>
+</svg>
