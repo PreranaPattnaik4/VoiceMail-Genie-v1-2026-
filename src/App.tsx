@@ -1337,346 +1337,424 @@ export default function App() {
   if (!isAppAuthenticated) {
     return (
       <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans antialiased text-slate-900">
-        <div className="w-full max-w-md">
-          {/* Logo / Brand Header */}
-          <div className="flex flex-col items-center mb-8 text-center">
-            <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-md shadow-indigo-100 mb-3">
-              <Sparkles className="w-6 h-6 text-white" />
+        <div className="w-full max-w-4xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
+          
+          {/* Left Column: Big Image Card (Visual Feature Panel) */}
+          <div className="hidden lg:flex lg:col-span-5 bg-[#0b0f19] flex-col justify-between p-8 relative overflow-hidden">
+            {/* Soft decorative background glow */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-600/10 rounded-full filter blur-3xl -mr-20 -mt-20"></div>
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-600/10 rounded-full filter blur-3xl -ml-20 -mb-20"></div>
+
+            {/* Brand Header */}
+            <div className="relative z-10">
+              <div className="flex items-center gap-2.5 text-white">
+                <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                  <Sparkles className="w-5.5 h-5.5 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-base font-extrabold tracking-tight">VoiceMail-Genie</h2>
+                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">AI Email Workspace</p>
+                </div>
+              </div>
             </div>
-            <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">VoiceMail-Genie <span className="text-indigo-600">v1</span></h1>
-            <p className="text-xs text-slate-500 font-medium mt-1">Convert vocal memos into pristine emails with Gemini AI</p>
+
+            {/* Big Image Card Wrapper */}
+            <div className="relative z-10 flex-grow flex flex-col items-center justify-center py-8">
+              <div className="w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/50 p-2 shadow-2xl hover:border-indigo-500/30 transition-all duration-300">
+                <img 
+                  src="https://www.dropbox.com/scl/fi/2fsft5h3y1cxzc8le26g2/8a14f560-f721-49e8-9514-152accab51c2.png?rlkey=ibt6bqqk18d8od97xrqulbpxa&st=832pno3k&raw=1" 
+                  alt="VoiceMail-Genie Interface Preview" 
+                  className="w-full h-auto rounded-xl object-cover shadow-inner"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="text-center mt-6">
+                <h3 className="text-white font-bold text-sm">Vocal Memos to Pristine Emails</h3>
+                <p className="text-[11px] text-slate-400 mt-1 leading-relaxed max-w-xs">
+                  Record your thoughts or choose from preset scenarios. Our Gemini AI engine instantly compiles professional drafts.
+                </p>
+              </div>
+            </div>
+
+            {/* Micro footer */}
+            <div className="relative z-10 pt-4 border-t border-slate-900/80">
+              <div className="flex items-center justify-between text-[9px] text-slate-500 font-bold uppercase tracking-wider">
+                <span>Secure Authentication</span>
+                <span>Powered by Firebase Auth</span>
+              </div>
+            </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-xl shadow-slate-100/50 overflow-hidden">
-            {/* Tab selection */}
-            {!showForgotForm && (
-              <div className="flex border-b border-slate-100 bg-slate-50/50 p-1">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setAuthTab('login');
-                    setAuthError("");
-                    setAuthSuccess("");
-                  }}
-                  className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
-                    authTab === 'login'
-                      ? "bg-white text-indigo-600 shadow-sm border border-slate-100"
-                      : "text-slate-500 hover:text-slate-700"
-                  }`}
-                >
-                  Sign In
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setAuthTab('register');
-                    setAuthError("");
-                    setAuthSuccess("");
-                  }}
-                  className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
-                    authTab === 'register'
-                      ? "bg-white text-indigo-600 shadow-sm border border-slate-100"
-                      : "text-slate-500 hover:text-slate-700"
-                  }`}
-                >
-                  Create Account
-                </button>
+          {/* Right Column: Sign In / Registration Form Workspace */}
+          <div className="col-span-1 lg:col-span-7 flex flex-col justify-center bg-white p-6 sm:p-8 md:p-10 border-t lg:border-t-0 lg:border-l border-slate-100">
+            <div className="w-full max-w-md mx-auto">
+              {/* Logo / Brand Header on Mobile/Tablet */}
+              <div className="flex flex-col items-center mb-6 text-center lg:hidden">
+                <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-md shadow-indigo-100 mb-2">
+                  <Sparkles className="w-6 h-6 text-white" />
+                </div>
+                <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">VoiceMail-Genie</h1>
+                <p className="text-xs text-slate-500 font-medium mt-1">Convert vocal memos into pristine emails with Gemini AI</p>
               </div>
-            )}
 
-            <div className="p-6 sm:p-8">
-              {/* Alert notifications */}
-              {authError && (
-                <div className="mb-4 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-start gap-2">
-                  <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
-                  <div>{authError}</div>
+              {/* Responsive Image Card for Mobile / Tablet */}
+              <div className="block lg:hidden mb-6">
+                <div className="w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 p-1.5 shadow-sm">
+                  <img 
+                    src="https://www.dropbox.com/scl/fi/2fsft5h3y1cxzc8le26g2/8a14f560-f721-49e8-9514-152accab51c2.png?rlkey=ibt6bqqk18d8od97xrqulbpxa&st=832pno3k&raw=1" 
+                    alt="VoiceMail-Genie Interface Preview" 
+                    className="w-full h-auto rounded-xl object-cover"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
-              )}
-              {authSuccess && (
-                <div className="mb-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <div>{authSuccess}</div>
-                </div>
-              )}
+              </div>
 
-              {showForgotForm ? (
-                /* Forgot Password Form */
-                <form onSubmit={handlePasswordResetRequest} className="space-y-4">
-                  <div className="text-left mb-6">
-                    <h2 className="text-lg font-bold text-slate-800">Forgot Password?</h2>
-                    <p className="text-xs text-slate-500 mt-1">Enter your email address below and we'll send you instructions to reset your password.</p>
+              {/* Header on Desktop */}
+              <div className="hidden lg:block mb-6 text-left">
+                <h2 className="text-xl font-extrabold tracking-tight text-slate-800">
+                  {showForgotForm ? "Reset Password" : authTab === 'login' ? 'Welcome Back!' : 'Create Your Workspace'}
+                </h2>
+                <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mt-0.5">
+                  {showForgotForm 
+                    ? "Recover access to your account" 
+                    : authTab === 'login' 
+                      ? 'Sign in to access your saved email drafts' 
+                      : 'Sign up to get your own secure AI email workspace'}
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden mb-6">
+                {/* Tab selection */}
+                {!showForgotForm && (
+                  <div className="flex border-b border-slate-100 bg-slate-50/50 p-1">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAuthTab('login');
+                        setAuthError("");
+                        setAuthSuccess("");
+                      }}
+                      className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all cursor-pointer ${
+                        authTab === 'login'
+                          ? "bg-white text-indigo-600 shadow-xs border border-slate-100"
+                          : "text-slate-500 hover:text-slate-700"
+                      }`}
+                    >
+                      Sign In
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAuthTab('register');
+                        setAuthError("");
+                        setAuthSuccess("");
+                      }}
+                      className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all cursor-pointer ${
+                        authTab === 'register'
+                          ? "bg-white text-indigo-600 shadow-xs border border-slate-100"
+                          : "text-slate-500 hover:text-slate-700"
+                      }`}
+                    >
+                      Create Account
+                    </button>
                   </div>
+                )}
 
-                  <div className="space-y-1.5 text-left">
-                    <label htmlFor="forgot-email" className="text-xs font-bold text-slate-700">Email Address</label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
-                      <input
-                        id="forgot-email"
-                        type="email"
-                        value={forgotEmail}
-                        onChange={(e) => setForgotEmail(e.target.value)}
-                        placeholder="you@example.com"
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
-                        required
-                      />
+                <div className="p-5 sm:p-6">
+                  {/* Alert notifications */}
+                  {authError && (
+                    <div className="mb-4 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-start gap-2 text-left">
+                      <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
+                      <div>{authError}</div>
                     </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isLoggingIn}
-                    className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm py-2.5 px-4 rounded-xl shadow-md shadow-indigo-100 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
-                  >
-                    {isLoggingIn ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      "Send Reset Link"
-                    )}
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowForgotForm(false);
-                      setAuthError("");
-                      setAuthSuccess("");
-                    }}
-                    className="w-full text-center text-xs font-bold text-slate-500 hover:text-indigo-600 transition-all mt-2 cursor-pointer"
-                  >
-                    Back to Sign In
-                  </button>
-                </form>
-              ) : authTab === 'login' ? (
-                /* Sign In Form */
-                <form onSubmit={handleEmailLogin} className="space-y-4">
-                  <div className="space-y-1.5 text-left">
-                    <label htmlFor="login-email" className="text-xs font-bold text-slate-700">Email Address</label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
-                      <input
-                        id="login-email"
-                        type="email"
-                        value={loginEmail}
-                        onChange={(e) => setLoginEmail(e.target.value)}
-                        placeholder="you@example.com"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
-                        required
-                      />
+                  )}
+                  {authSuccess && (
+                    <div className="mb-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold flex items-start gap-2 text-left">
+                      <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                      <div>{authSuccess}</div>
                     </div>
-                  </div>
+                  )}
 
-                  <div className="space-y-1.5 text-left">
-                    <div className="flex justify-between items-center">
-                      <label htmlFor="login-pass" className="text-xs font-bold text-slate-700">Password</label>
+                  {showForgotForm ? (
+                    /* Forgot Password Form */
+                    <form onSubmit={handlePasswordResetRequest} className="space-y-4">
+                      <div className="text-left mb-4">
+                        <p className="text-xs text-slate-500">Enter your email address below and we'll send you instructions to reset your password.</p>
+                      </div>
+
+                      <div className="space-y-1.5 text-left">
+                        <label htmlFor="forgot-email" className="text-xs font-bold text-slate-700">Email Address</label>
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                          <input
+                            id="forgot-email"
+                            type="email"
+                            value={forgotEmail}
+                            onChange={(e) => setForgotEmail(e.target.value)}
+                            placeholder="you@example.com"
+                            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all font-semibold"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isLoggingIn}
+                        className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm py-2.5 px-4 rounded-xl shadow-md shadow-indigo-100 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
+                      >
+                        {isLoggingIn ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          "Send Reset Link"
+                        )}
+                      </button>
+
                       <button
                         type="button"
                         onClick={() => {
-                          setShowForgotForm(true);
+                          setShowForgotForm(false);
                           setAuthError("");
                           setAuthSuccess("");
                         }}
-                        className="text-xs text-indigo-600 hover:text-indigo-700 font-bold transition-all"
+                        className="w-full text-center text-xs font-bold text-slate-500 hover:text-indigo-600 transition-all mt-2 cursor-pointer"
                       >
-                        Forgot Password?
+                        Back to Sign In
                       </button>
-                    </div>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
-                      <input
-                        id="login-pass"
-                        type={showPassword ? "text" : "password"}
-                        value={loginPassword}
-                        onChange={(e) => setLoginPassword(e.target.value)}
-                        placeholder="••••••••"
-                        className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
-                        required
-                      />
+                    </form>
+                  ) : authTab === 'login' ? (
+                    /* Sign In Form */
+                    <form onSubmit={handleEmailLogin} className="space-y-4">
+                      <div className="space-y-1.5 text-left">
+                        <label htmlFor="login-email" className="text-xs font-bold text-slate-700">Email Address</label>
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+                          <input
+                            id="login-email"
+                            type="email"
+                            value={loginEmail}
+                            onChange={(e) => setLoginEmail(e.target.value)}
+                            placeholder="you@example.com"
+                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all font-semibold"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1.5 text-left">
+                        <div className="flex justify-between items-center">
+                          <label htmlFor="login-pass" className="text-xs font-bold text-slate-700">Password</label>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setShowForgotForm(true);
+                              setAuthError("");
+                              setAuthSuccess("");
+                            }}
+                            className="text-xs text-indigo-600 hover:text-indigo-700 font-bold transition-all cursor-pointer"
+                          >
+                            Forgot Password?
+                          </button>
+                        </div>
+                        <div className="relative">
+                          <Lock className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+                          <input
+                            id="login-pass"
+                            type={showPassword ? "text" : "password"}
+                            value={loginPassword}
+                            onChange={(e) => setLoginPassword(e.target.value)}
+                            placeholder="••••••••"
+                            className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all font-semibold"
+                            required
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600 cursor-pointer"
+                          >
+                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center text-left py-1">
+                        <label className="relative flex items-center gap-2 cursor-pointer select-none">
+                          <input
+                            type="checkbox"
+                            checked={loginRememberMe}
+                            onChange={(e) => setLoginRememberMe(e.target.checked)}
+                            className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                          />
+                          <span className="text-xs font-semibold text-slate-600">Remember Me</span>
+                        </label>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isLoggingIn}
+                        className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md shadow-indigo-100 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
+                      >
+                        {isLoggingIn ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          "Sign In"
+                        )}
+                      </button>
+
+                      <div className="relative my-4">
+                        <div className="absolute inset-0 flex items-center">
+                          <div className="w-full border-t border-slate-100"></div>
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase font-extrabold text-slate-400">
+                          <span className="bg-white px-2">Or continue with</span>
+                        </div>
+                      </div>
+
                       <button
                         type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600"
+                        onClick={handleLogin}
+                        disabled={isLoggingIn}
+                        className="w-full min-h-[44px] flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 rounded-xl bg-white text-slate-700 hover:text-indigo-600 font-bold text-sm py-2.5 px-4 shadow-xs hover:bg-slate-50 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
                       >
-                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                        </svg>
+                        <span>Sign in with Google</span>
                       </button>
-                    </div>
-                  </div>
+                    </form>
+                  ) : (
+                    /* Registration Form */
+                    <form onSubmit={handleEmailSignUp} className="space-y-4">
+                      <div className="space-y-1.5 text-left">
+                        <label htmlFor="reg-name" className="text-xs font-bold text-slate-700">Full Name</label>
+                        <div className="relative">
+                          <User className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+                          <input
+                            id="reg-name"
+                            type="text"
+                            value={regName}
+                            onChange={(e) => setRegName(e.target.value)}
+                            placeholder="John Doe"
+                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all font-semibold"
+                            required
+                          />
+                        </div>
+                      </div>
 
-                  <div className="flex items-center text-left py-1">
-                    <label className="relative flex items-center gap-2 cursor-pointer select-none">
-                      <input
-                        type="checkbox"
-                        checked={loginRememberMe}
-                        onChange={(e) => setLoginRememberMe(e.target.checked)}
-                        className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <span className="text-xs font-semibold text-slate-600">Remember Me</span>
-                    </label>
-                  </div>
+                      <div className="space-y-1.5 text-left">
+                        <label htmlFor="reg-email" className="text-xs font-bold text-slate-700">Email Address</label>
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+                          <input
+                            id="reg-email"
+                            type="email"
+                            value={regEmail}
+                            onChange={(e) => setRegEmail(e.target.value)}
+                            placeholder="john@example.com"
+                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all font-semibold"
+                            required
+                          />
+                        </div>
+                      </div>
 
-                  <button
-                    type="submit"
-                    disabled={isLoggingIn}
-                    className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md shadow-indigo-100 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
-                  >
-                    {isLoggingIn ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      "Sign In"
-                    )}
-                  </button>
+                      <div className="space-y-1.5 text-left">
+                        <label htmlFor="reg-pass" className="text-xs font-bold text-slate-700">Password</label>
+                        <div className="relative">
+                          <Lock className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+                          <input
+                            id="reg-pass"
+                            type={showPassword ? "text" : "password"}
+                            value={regPassword}
+                            onChange={(e) => setRegPassword(e.target.value)}
+                            placeholder="Min. 8 characters"
+                            className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all font-semibold"
+                            required
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600 cursor-pointer"
+                          >
+                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          </button>
+                        </div>
+                      </div>
 
-                  <div className="relative my-4">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-slate-100"></div>
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase font-extrabold text-slate-400">
-                      <span className="bg-white px-2">Or continue with</span>
-                    </div>
-                  </div>
+                      <div className="space-y-1.5 text-left">
+                        <label htmlFor="reg-confirm" className="text-xs font-bold text-slate-700">Confirm Password</label>
+                        <div className="relative">
+                          <Lock className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+                          <input
+                            id="reg-confirm"
+                            type={showPassword ? "text" : "password"}
+                            value={regConfirmPassword}
+                            onChange={(e) => setRegConfirmPassword(e.target.value)}
+                            placeholder="Repeat your password"
+                            className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all font-semibold"
+                            required
+                          />
+                        </div>
+                      </div>
 
-                  <button
-                    type="button"
-                    onClick={handleLogin}
-                    disabled={isLoggingIn}
-                    className="w-full min-h-[44px] flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 rounded-xl bg-white text-slate-700 hover:text-indigo-600 font-bold text-sm py-2.5 px-4 shadow-xs hover:bg-slate-50 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
-                  >
-                    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
-                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
-                    </svg>
-                    <span>Sign in with Google</span>
-                  </button>
-                </form>
-              ) : (
-                /* Registration Form */
-                <form onSubmit={handleEmailSignUp} className="space-y-4">
-                  <div className="space-y-1.5 text-left">
-                    <label htmlFor="reg-name" className="text-xs font-bold text-slate-700">Full Name</label>
-                    <div className="relative">
-                      <User className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
-                      <input
-                        id="reg-name"
-                        type="text"
-                        value={regName}
-                        onChange={(e) => setRegName(e.target.value)}
-                        placeholder="John Doe"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
-                        required
-                      />
-                    </div>
-                  </div>
+                      <button
+                        type="submit"
+                        disabled={isLoggingIn}
+                        className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md shadow-indigo-100 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
+                      >
+                        {isLoggingIn ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          "Create Account"
+                        )}
+                      </button>
 
-                  <div className="space-y-1.5 text-left">
-                    <label htmlFor="reg-email" className="text-xs font-bold text-slate-700">Email Address</label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
-                      <input
-                        id="reg-email"
-                        type="email"
-                        value={regEmail}
-                        onChange={(e) => setRegEmail(e.target.value)}
-                        placeholder="john@example.com"
-                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
-                        required
-                      />
-                    </div>
-                  </div>
+                      <div className="relative my-4">
+                        <div className="absolute inset-0 flex items-center">
+                          <div className="w-full border-t border-slate-100"></div>
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase font-extrabold text-slate-400">
+                          <span className="bg-white px-2">Or continue with</span>
+                        </div>
+                      </div>
 
-                  <div className="space-y-1.5 text-left">
-                    <label htmlFor="reg-pass" className="text-xs font-bold text-slate-700">Password</label>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
-                      <input
-                        id="reg-pass"
-                        type={showPassword ? "text" : "password"}
-                        value={regPassword}
-                        onChange={(e) => setRegPassword(e.target.value)}
-                        placeholder="Min. 8 characters"
-                        className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
-                        required
-                      />
                       <button
                         type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600"
+                        onClick={handleLogin}
+                        disabled={isLoggingIn}
+                        className="w-full min-h-[44px] flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 rounded-xl bg-white text-slate-700 hover:text-indigo-600 font-bold text-sm py-2.5 px-4 shadow-xs hover:bg-slate-50 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
                       >
-                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                        </svg>
+                        <span>Sign up with Google</span>
                       </button>
-                    </div>
-                  </div>
+                    </form>
+                  )}
+                </div>
+              </div>
 
-                  <div className="space-y-1.5 text-left">
-                    <label htmlFor="reg-confirm" className="text-xs font-bold text-slate-700">Confirm Password</label>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
-                      <input
-                        id="reg-confirm"
-                        type={showPassword ? "text" : "password"}
-                        value={regConfirmPassword}
-                        onChange={(e) => setRegConfirmPassword(e.target.value)}
-                        placeholder="Repeat your password"
-                        className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isLoggingIn}
-                    className="w-full min-h-[44px] flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md shadow-indigo-100 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
-                  >
-                    {isLoggingIn ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      "Create Account"
-                    )}
-                  </button>
-
-                  <div className="relative my-4">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-slate-100"></div>
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase font-extrabold text-slate-400">
-                      <span className="bg-white px-2">Or continue with</span>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={handleLogin}
-                    disabled={isLoggingIn}
-                    className="w-full min-h-[44px] flex items-center justify-center gap-2 border border-slate-200 hover:border-slate-300 rounded-xl bg-white text-slate-700 hover:text-indigo-600 font-bold text-sm py-2.5 px-4 shadow-xs hover:bg-slate-50 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
-                  >
-                    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
-                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
-                    </svg>
-                    <span>Sign up with Google</span>
-                  </button>
-                </form>
-              )}
+              {/* Sandbox Demo option as fallback at bottom */}
+              <div className="text-center space-y-3">
+                <button
+                  onClick={handleSandboxLogin}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-dashed border-indigo-200 rounded-xl bg-indigo-50/50 hover:bg-indigo-50 text-indigo-700 font-bold text-xs transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+                  title="Skip creating an account and instantly experience simulated features"
+                >
+                  <span>🧪 Instant Sandbox Bypass</span>
+                </button>
+                <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                  Secure Cloud Environment • Powered by Firebase Auth
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Sandbox Demo option as fallback at bottom */}
-          <div className="mt-6 text-center space-y-3">
-            <button
-              onClick={handleSandboxLogin}
-              className="inline-flex items-center gap-1.5 px-4 py-2 border border-dashed border-indigo-200 rounded-xl bg-indigo-50/50 hover:bg-indigo-50 text-indigo-700 font-bold text-xs transition-all cursor-pointer"
-              title="Skip creating an account and instantly experience simulated features"
-            >
-              <span>🧪 Instant Sandbox Bypass</span>
-            </button>
-            <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
-              Secure Cloud Environment • Powered by Firebase Auth
-            </div>
-          </div>
         </div>
       </div>
     );
